@@ -16,3 +16,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+//Route::get('genres',[\App\Http\Controllers\GenreController::class,'index']);
+Route::resource('genres' , \App\Http\Controllers\GenreController::class);
