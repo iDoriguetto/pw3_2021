@@ -16,6 +16,11 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-
+Route::get('/layout', function () {
+    return view('admin.layout');
+});
 //Route::get('genres',[\App\Http\Controllers\GenreController::class,'index']);
-Route::resource('genres' , \App\Http\Controllers\GenreController::class);
+Route::prefix('admin')->group(function (){
+    Route::resource('genres' , \App\Http\Controllers\GenreController::class);
+});
+
