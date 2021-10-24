@@ -61,10 +61,10 @@
                         <a class="nav-link" href="{{route('genres.index')}}">Generos</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Diretores</a>
+                        <a class="nav-link" href="{{route('directors.index')}}">Diretores</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Idiomas</a>
+                        <a class="nav-link" href="{{route('languages.index')}}">Idiomas</a>
                     </li>
                     {{--<li class="nav-item">
                         <a class="nav-link disabled">Disabled</a>
