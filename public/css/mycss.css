@@ -4,3 +4,11 @@
 .form-group{
     padding-bottom: 8px;
 }
+.col-50{
+    width: 50%;
+}
+
+.col-25{
+    width: 25%;
+}
+
