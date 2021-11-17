@@ -25,5 +25,6 @@ Route::prefix('admin')->group(function (){
     Route::resource('directors' , \App\Http\Controllers\DirectorController::class)->except('show');
     Route::resource('languages' , \App\Http\Controllers\LanguageController::class)->except('show');
     Route::resource('countries', \App\Http\Controllers\CountryController::class)->except('show');
+    Route::resource('movies', \App\Http\Controllers\MovieController::class)->except('show');
 });
 
