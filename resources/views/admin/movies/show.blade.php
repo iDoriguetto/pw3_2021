@@ -19,7 +19,7 @@
                     <p class="card-text"><strong>Trailer:</strong> <a href="{{$movie->trailer}}" target="_blank">Asista aqui</a></p>
                     <p class="card-text"><strong>Pais:</strong> {{$movie->country->name}}</p>
                     <p class="card-text"><strong>Genero:</strong> {{$movie->genre->description}}</p>
-                    <p class="card-text"><strong>Diretor:</strong> {{$movie->director->name}}</p>
+                    <p class="card-text"><strong>Diretor:</strong>{{empty($movie->director->name) ? 'NULL' : $movie->director->name}}</p>
                     <a href="{{route('movies.index')}}" class="btn btn-primary">Voltar</a>
                 </div>
             </div>

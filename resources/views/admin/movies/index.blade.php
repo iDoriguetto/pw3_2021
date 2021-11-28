@@ -25,7 +25,7 @@
             <tr>
                 <td class="col-50">{{$movie->title}}</td>
                 <td>{{$movie->genre->description}}</td>
-                <td>{{$movie->director->name}}</td>
+                <td>{{empty($movie->director->name) ? 'NULL' : $movie->director->name}}</td>
                 <td>
                     <a href="{{route('movies.show', $movie)}}" class="btn btn-dark">Exibir</a>
                     <a href="{{route('movies.edit', $movie)}}" class="btn btn-primary">Editar</a>

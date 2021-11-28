@@ -43,10 +43,12 @@ class MovieController extends Controller
      */
     public function store(Request $request)
     {
+
+        //var_dump($request->director_id); die;
         //Movie::create($request->all());
         $nameFile = null;
         if ($request->hasFile('cover') && $request->file('cover')->isValid()){
-            $name = uniqid(date('HisYmd'));
+            $name = uniqid(date('HisYmd'), true);
             $extesion = $request->cover->extension();
             $nameFile = "{$name}.{$extesion}";
             $upload = $request->cover->storeAs('public/movies', $nameFile);
@@ -67,6 +69,8 @@ class MovieController extends Controller
                     'genre_id' => $request->genre_id,
                     'director_id' => $request->director_id
                 ]);
+
+
                 return redirect()->route('movies.index');
             }
         }
@@ -108,9 +112,57 @@ class MovieController extends Controller
      */
     public function update(Request $request, Movie $movie)
     {
-        //
-        //se for enviado algum arquivo de capa pelo formulario entao deve-se excluir o arquivo no servidor, fazer o upload do novo arquivo e atualizar os dados no banco
-        //caso nao seja enviado um novo arquivo de capa somente atualize os dados do banco.
+
+       // var_dump(empty($request->cover)); die;
+       //var_dump($movie->cover); die;
+        //$movie->update($request->all());
+
+        if(empty($request->cover)){
+            $movie->update([
+                'title' => $request->title,
+                'synopsis' => $request->synopsis,
+                'year' => $request->year,
+                'trailer' => $request->trailer,
+                'time' => $request->time,
+                'cover' => $movie->cover,
+                'country_id' => $request->country_id,
+                'genre_id' => $request->genre_id,
+                'director_id' => $request->director_id
+            ]);
+
+            return redirect()->route('movies.index');
+
+        }else{
+            if ($request->hasFile('cover') && $request->file('cover')->isValid()){
+                $name = uniqid(date('HisYmd'), true);
+                $extesion = $request->cover->extension();
+                $nameFile = "{$name}.{$extesion}";
+                $upload = $request->cover->storeAs('public/movies', $nameFile);
+
+                if(!$upload){
+                    return redirect()
+                        ->back()
+                        ->with('error','Falha ao fazer upload')
+                        ->withInput();
+                }else{
+                    $movie->update([
+                        'title' => $request->title,
+                        'synopsis' => $request->synopsis,
+                        'year' => $request->year,
+                        'trailer' => $request->trailer,
+                        'time' => $request->time,
+                        'cover' => $nameFile,
+                        'country_id' => $request->country_id,
+                        'genre_id' => $request->genre_id,
+                        'director_id' => $request->director_id
+                    ]);
+
+
+                    return redirect()->route('movies.index');
+                }
+            }
+        }
+
     }
 
     /**

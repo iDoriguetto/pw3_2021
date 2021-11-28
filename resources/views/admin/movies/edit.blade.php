@@ -14,7 +14,7 @@
         </div>
         <div class="form-group">
             <label for="cover">Capa</label>
-            <input type="file" name="cover" id="cover" class="form-control" required>
+            <input type="file" name="cover" id="cover" class="form-control">
         </div>
         <div class="form-group">
             <label for="trailer">Trailer</label>
