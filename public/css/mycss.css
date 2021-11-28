@@ -12,3 +12,11 @@
     width: 25%;
 }
 
+.card-title{
+    font-size: 35px;
+}
+
+.card-text{
+    text-align: justify;
+}
+
